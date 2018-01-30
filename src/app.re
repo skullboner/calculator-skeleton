@@ -31,6 +31,28 @@ let make = (_children) => {
           displayValue ++ String.make(1, a)
         };
       ReasonReact.Update({...state, displayValue: newValue})
+    | Operation(op) =>
+      let {displayValue} = state;
+      /* let add = (x, y) => x + y; 
+      let partialOperation = add(int_of_string(displayValue)); */
+      ReasonReact.Update({
+        displayValue: "0",
+        currentValue: float_of_string(displayValue),
+        currentOperator: Some(op)
+      });
+    | Equals => 
+      switch state.currentOperator {
+      | Some(Plus) => 
+        let {displayValue, currentValue} = state;
+        let result = currentValue +. float_of_string(displayValue);
+        ReasonReact.Update({
+          displayValue: string_of_float(result),
+          currentValue: float_of_string(displayValue),
+          currentOperator: None
+        }); 
+      | _ => ReasonReact.NoUpdate
+      };
+      
     | _ => ReasonReact.NoUpdate
     },
   initialState: () => {displayValue: "0", currentOperator: None, currentValue: 0.0},
