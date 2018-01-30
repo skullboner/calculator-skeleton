@@ -20,10 +20,10 @@ let component = ReasonReact.reducerComponent("App");
 
 let make = (_children) => {
   ...component,
-  reducer: (action, state) =>
-    let {displayValue} = state;
+  reducer: (action, state) => 
     switch action {
     | NumberPart(a) =>
+      let {displayValue} = state;
       let newValue =
         if (displayValue == "0") {
           String.make(1, a)
@@ -45,7 +45,28 @@ let make = (_children) => {
         (ReasonReact.stringToElement("8"))
       </button>
       <button onClick=(reduce((_) => Operation(Plus)))>
-        (ReasonReact.stringToElement("8"))
+        (ReasonReact.stringToElement("+"))
+      </button>
+      <button onClick=(reduce((_) => Equals))>
+        (ReasonReact.stringToElement("="))
       </button>
     </div>
 };
+
+    /*| Operation(op) =>
+       ReasonReact.Update({
+        ...state,
+        currentValue: displayValue,
+        currentValue: int_of_string(displayValue),
+        currentOperator: Some(op),
+        any: (a) => a
+      }) 
+      switch op {
+      | plus => 
+        let add = (x, y) => x + y;
+        let partialOperation = add(int_of_string(displayValue));
+        ReasonReact.Update({
+          ...state,
+          displayValue: displayValue ++ " +"
+        });
+      };*/

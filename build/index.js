@@ -27749,7 +27749,11 @@ function make() {
                       onClick: Curry._1(reduce, (function () {
                               return /* Operation */Block.__(1, [/* Plus */2]);
                             }))
-                    }, "8"));
+                    }, "+"), React.createElement("button", {
+                      onClick: Curry._1(reduce, (function () {
+                              return /* Equals */1;
+                            }))
+                    }, "="));
     });
   newrecord[/* initialState */10] = (function () {
       return /* record */[
