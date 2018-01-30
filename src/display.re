@@ -1,6 +1,3 @@
-
-
-
 let component = ReasonReact.statelessComponent("Display");
 
 let make = (~value, _chidlren) => {

@@ -21,9 +21,9 @@ let component = ReasonReact.reducerComponent("App");
 let make = (_children) => {
   ...component,
   reducer: (action, state) =>
+    let {displayValue} = state;
     switch action {
     | NumberPart(a) =>
-      let {displayValue} = state;
       let newValue =
         if (displayValue == "0") {
           String.make(1, a)
@@ -36,11 +36,15 @@ let make = (_children) => {
   initialState: () => {displayValue: "0", currentOperator: None, currentValue: 0.0},
   render: ({state: {displayValue: value}, reduce}) =>
     <div>
+      /* <Buttons /> */
       <Display value />
       <button onClick=(reduce((_) => NumberPart('9')))>
         (ReasonReact.stringToElement("9"))
       </button>
       <button onClick=(reduce((_) => NumberPart('8')))>
+        (ReasonReact.stringToElement("8"))
+      </button>
+      <button onClick=(reduce((_) => Operation(Plus)))>
         (ReasonReact.stringToElement("8"))
       </button>
     </div>
