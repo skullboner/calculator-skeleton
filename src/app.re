@@ -1,3 +1,9 @@
+/*
+ TODO Figure out partial application
+ TODO Refactor pieces to their own files
+ TODO Minimise repetition, understand scoping
+ TODO Set up build so that it doens't fill src with crap
+*/
 type operation =
   | Divide
   | Multiply
